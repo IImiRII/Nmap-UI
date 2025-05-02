@@ -1,10 +1,10 @@
-C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\bin\Debug\Nmap_UI.exe.config
-C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\bin\Debug\Nmap_UI.exe
-C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\bin\Debug\Nmap_UI.pdb
 C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.csproj.AssemblyReference.cache
 C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.Form1.resources
 C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.Properties.Resources.resources
 C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.csproj.GenerateResource.cache
 C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.csproj.CoreCompileInputs.cache
+C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\bin\Debug\Nmap_UI.exe.config
+C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\bin\Debug\Nmap_UI.exe
+C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\bin\Debug\Nmap_UI.pdb
 C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.exe
 C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.pdb
