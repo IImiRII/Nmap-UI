@@ -29,11 +29,19 @@
         private void InitializeComponent()
         {
             this.main_panel = new System.Windows.Forms.Panel();
-            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.output_TabControl = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.output_richbox = new System.Windows.Forms.RichTextBox();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.portsHosts_tabPage = new System.Windows.Forms.TabPage();
+            this.portsDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -56,6 +64,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.os_host_flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
@@ -90,11 +99,11 @@
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.os_host_flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.main_panel.SuspendLayout();
-            this.tabControl3.SuspendLayout();
+            this.output_TabControl.SuspendLayout();
             this.tabPage7.SuspendLayout();
-            this.tabPage8.SuspendLayout();
+            this.portsHosts_tabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.portsDataGridView)).BeginInit();
             this.tabPage9.SuspendLayout();
             this.tabPage11.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -106,28 +115,28 @@
             // 
             // main_panel
             // 
-            this.main_panel.Controls.Add(this.tabControl3);
+            this.main_panel.Controls.Add(this.output_TabControl);
             this.main_panel.Controls.Add(this.tabControl2);
             this.main_panel.Controls.Add(this.target_panel);
             this.main_panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.main_panel.Location = new System.Drawing.Point(0, 30);
+            this.main_panel.Location = new System.Drawing.Point(0, 28);
             this.main_panel.Name = "main_panel";
-            this.main_panel.Size = new System.Drawing.Size(982, 523);
+            this.main_panel.Size = new System.Drawing.Size(982, 525);
             this.main_panel.TabIndex = 6;
             // 
-            // tabControl3
+            // output_TabControl
             // 
-            this.tabControl3.Controls.Add(this.tabPage7);
-            this.tabControl3.Controls.Add(this.tabPage8);
-            this.tabControl3.Controls.Add(this.tabPage9);
-            this.tabControl3.Controls.Add(this.tabPage10);
-            this.tabControl3.Controls.Add(this.tabPage11);
-            this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl3.Location = new System.Drawing.Point(200, 80);
-            this.tabControl3.Name = "tabControl3";
-            this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(782, 443);
-            this.tabControl3.TabIndex = 6;
+            this.output_TabControl.Controls.Add(this.tabPage7);
+            this.output_TabControl.Controls.Add(this.portsHosts_tabPage);
+            this.output_TabControl.Controls.Add(this.tabPage9);
+            this.output_TabControl.Controls.Add(this.tabPage10);
+            this.output_TabControl.Controls.Add(this.tabPage11);
+            this.output_TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.output_TabControl.Location = new System.Drawing.Point(200, 80);
+            this.output_TabControl.Name = "output_TabControl";
+            this.output_TabControl.SelectedIndex = 0;
+            this.output_TabControl.Size = new System.Drawing.Size(782, 445);
+            this.output_TabControl.TabIndex = 6;
             // 
             // tabPage7
             // 
@@ -135,7 +144,7 @@
             this.tabPage7.Controls.Add(this.output_richbox);
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(774, 414);
+            this.tabPage7.Size = new System.Drawing.Size(774, 416);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "Nmap Output";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -155,25 +164,95 @@
             this.output_richbox.Location = new System.Drawing.Point(0, 0);
             this.output_richbox.Name = "output_richbox";
             this.output_richbox.ReadOnly = true;
-            this.output_richbox.Size = new System.Drawing.Size(774, 414);
+            this.output_richbox.Size = new System.Drawing.Size(774, 416);
             this.output_richbox.TabIndex = 0;
             this.output_richbox.Text = "";
             // 
-            // tabPage8
+            // portsHosts_tabPage
             // 
-            this.tabPage8.Controls.Add(this.label13);
-            this.tabPage8.Controls.Add(this.label12);
-            this.tabPage8.Controls.Add(this.label11);
-            this.tabPage8.Controls.Add(this.label10);
-            this.tabPage8.Controls.Add(this.label9);
-            this.tabPage8.Controls.Add(this.label8);
-            this.tabPage8.Controls.Add(this.label7);
-            this.tabPage8.Location = new System.Drawing.Point(4, 25);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(774, 416);
-            this.tabPage8.TabIndex = 0;
-            this.tabPage8.Text = "Ports/Hosts";
-            this.tabPage8.UseVisualStyleBackColor = true;
+            this.portsHosts_tabPage.Controls.Add(this.portsDataGridView);
+            this.portsHosts_tabPage.Controls.Add(this.label13);
+            this.portsHosts_tabPage.Controls.Add(this.label12);
+            this.portsHosts_tabPage.Controls.Add(this.label11);
+            this.portsHosts_tabPage.Controls.Add(this.label10);
+            this.portsHosts_tabPage.Controls.Add(this.label9);
+            this.portsHosts_tabPage.Controls.Add(this.label8);
+            this.portsHosts_tabPage.Controls.Add(this.label7);
+            this.portsHosts_tabPage.Location = new System.Drawing.Point(4, 25);
+            this.portsHosts_tabPage.Name = "portsHosts_tabPage";
+            this.portsHosts_tabPage.Size = new System.Drawing.Size(774, 416);
+            this.portsHosts_tabPage.TabIndex = 0;
+            this.portsHosts_tabPage.Text = "Ports/Hosts";
+            this.portsHosts_tabPage.UseVisualStyleBackColor = true;
+            // 
+            // portsDataGridView
+            // 
+            this.portsDataGridView.BackgroundColor = System.Drawing.Color.MintCream;
+            this.portsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.portsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7});
+            this.portsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.portsDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.portsDataGridView.Name = "portsDataGridView";
+            this.portsDataGridView.RowHeadersWidth = 51;
+            this.portsDataGridView.RowTemplate.Height = 24;
+            this.portsDataGridView.Size = new System.Drawing.Size(774, 416);
+            this.portsDataGridView.TabIndex = 11;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Host";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 105;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "O/C";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 90;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Port";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 105;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Protocol";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 105;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "State";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 105;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Service";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Width = 105;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Version";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Width = 105;
             // 
             // label13
             // 
@@ -375,7 +454,7 @@
             this.tabControl2.Location = new System.Drawing.Point(0, 80);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(200, 443);
+            this.tabControl2.Size = new System.Drawing.Size(200, 445);
             this.tabControl2.TabIndex = 8;
             // 
             // tabPage5
@@ -386,10 +465,18 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(192, 414);
+            this.tabPage5.Size = new System.Drawing.Size(192, 416);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "Hosts";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // os_host_flowLayoutPanel
+            // 
+            this.os_host_flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.os_host_flowLayoutPanel.Location = new System.Drawing.Point(3, 38);
+            this.os_host_flowLayoutPanel.Name = "os_host_flowLayoutPanel";
+            this.os_host_flowLayoutPanel.Size = new System.Drawing.Size(186, 375);
+            this.os_host_flowLayoutPanel.TabIndex = 4;
             // 
             // label5
             // 
@@ -544,7 +631,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(982, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(982, 28);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -559,7 +646,7 @@
             this.printToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.scanToolStripMenuItem.Name = "scanToolStripMenuItem";
-            this.scanToolStripMenuItem.Size = new System.Drawing.Size(54, 26);
+            this.scanToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
             this.scanToolStripMenuItem.Text = "Scan";
             // 
             // newWindowToolStripMenuItem
@@ -611,7 +698,7 @@
             this.searchScanResultsToolStripMenuItem,
             this.filterHostsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 26);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // compareResultsToolStripMenuItem
@@ -638,7 +725,7 @@
             this.newProfileOrCommandToolStripMenuItem,
             this.editSelectedProfileToolStripMenuItem});
             this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            this.profileToolStripMenuItem.Size = new System.Drawing.Size(66, 26);
+            this.profileToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
             this.profileToolStripMenuItem.Text = "Profile";
             // 
             // newProfileOrCommandToolStripMenuItem
@@ -660,7 +747,7 @@
             this.reportABugToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 26);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // helpToolStripMenuItem1
@@ -681,14 +768,6 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.aboutToolStripMenuItem.Text = "About";
             // 
-            // os_host_flowLayoutPanel
-            // 
-            this.os_host_flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.os_host_flowLayoutPanel.Location = new System.Drawing.Point(3, 36);
-            this.os_host_flowLayoutPanel.Name = "os_host_flowLayoutPanel";
-            this.os_host_flowLayoutPanel.Size = new System.Drawing.Size(186, 375);
-            this.os_host_flowLayoutPanel.TabIndex = 4;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -701,10 +780,11 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.main_panel.ResumeLayout(false);
-            this.tabControl3.ResumeLayout(false);
+            this.output_TabControl.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
-            this.tabPage8.ResumeLayout(false);
+            this.portsHosts_tabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.portsDataGridView)).EndInit();
             this.tabPage9.ResumeLayout(false);
             this.tabPage11.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
@@ -721,11 +801,11 @@
 
         #endregion
         private System.Windows.Forms.Panel main_panel;
-        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabControl output_TabControl;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.RichTextBox output_richbox;
-        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.TabPage portsHosts_tabPage;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
@@ -783,6 +863,14 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.FlowLayoutPanel os_host_flowLayoutPanel;
+        private System.Windows.Forms.DataGridView portsDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
     }
 }
 
