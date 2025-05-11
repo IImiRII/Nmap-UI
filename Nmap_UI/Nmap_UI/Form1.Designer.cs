@@ -55,13 +55,13 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.hostDetails_tabPage = new System.Windows.Forms.TabPage();
+            this.hostDetails_treeView = new System.Windows.Forms.TreeView();
+            this.scan_TabPage = new System.Windows.Forms.TabPage();
+            this.btnCancelScan = new System.Windows.Forms.Button();
+            this.btnRemoveScan = new System.Windows.Forms.Button();
+            this.btnAppendScan = new System.Windows.Forms.Button();
+            this.scans_DataGridView = new System.Windows.Forms.DataGridView();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.os_host_flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -105,7 +105,9 @@
             this.portsHosts_tabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.portsDataGridView)).BeginInit();
             this.tabPage9.SuspendLayout();
-            this.tabPage11.SuspendLayout();
+            this.hostDetails_tabPage.SuspendLayout();
+            this.scan_TabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scans_DataGridView)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -129,8 +131,8 @@
             this.output_TabControl.Controls.Add(this.tabPage7);
             this.output_TabControl.Controls.Add(this.portsHosts_tabPage);
             this.output_TabControl.Controls.Add(this.tabPage9);
-            this.output_TabControl.Controls.Add(this.tabPage10);
-            this.output_TabControl.Controls.Add(this.tabPage11);
+            this.output_TabControl.Controls.Add(this.hostDetails_tabPage);
+            this.output_TabControl.Controls.Add(this.scan_TabPage);
             this.output_TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.output_TabControl.Location = new System.Drawing.Point(200, 80);
             this.output_TabControl.Name = "output_TabControl";
@@ -180,7 +182,7 @@
             this.portsHosts_tabPage.Controls.Add(this.label7);
             this.portsHosts_tabPage.Location = new System.Drawing.Point(4, 25);
             this.portsHosts_tabPage.Name = "portsHosts_tabPage";
-            this.portsHosts_tabPage.Size = new System.Drawing.Size(774, 416);
+            this.portsHosts_tabPage.Size = new System.Drawing.Size(774, 414);
             this.portsHosts_tabPage.TabIndex = 0;
             this.portsHosts_tabPage.Text = "Ports/Hosts";
             this.portsHosts_tabPage.UseVisualStyleBackColor = true;
@@ -202,7 +204,7 @@
             this.portsDataGridView.Name = "portsDataGridView";
             this.portsDataGridView.RowHeadersWidth = 51;
             this.portsDataGridView.RowTemplate.Height = 24;
-            this.portsDataGridView.Size = new System.Drawing.Size(774, 416);
+            this.portsDataGridView.Size = new System.Drawing.Size(774, 414);
             this.portsDataGridView.TabIndex = 11;
             // 
             // dataGridViewTextBoxColumn1
@@ -327,7 +329,7 @@
             this.tabPage9.Location = new System.Drawing.Point(4, 25);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(774, 416);
+            this.tabPage9.Size = new System.Drawing.Size(774, 414);
             this.tabPage9.TabIndex = 1;
             this.tabPage9.Text = "Topology";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -377,74 +379,79 @@
             this.button1.Text = "Host Viewer";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // tabPage10
+            // hostDetails_tabPage
             // 
-            this.tabPage10.Location = new System.Drawing.Point(4, 25);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(774, 416);
-            this.tabPage10.TabIndex = 2;
-            this.tabPage10.Text = "Host Details";
-            this.tabPage10.UseVisualStyleBackColor = true;
+            this.hostDetails_tabPage.Controls.Add(this.hostDetails_treeView);
+            this.hostDetails_tabPage.Location = new System.Drawing.Point(4, 25);
+            this.hostDetails_tabPage.Name = "hostDetails_tabPage";
+            this.hostDetails_tabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.hostDetails_tabPage.Size = new System.Drawing.Size(774, 414);
+            this.hostDetails_tabPage.TabIndex = 2;
+            this.hostDetails_tabPage.Text = "Host Details";
+            this.hostDetails_tabPage.UseVisualStyleBackColor = true;
             // 
-            // tabPage11
+            // hostDetails_treeView
             // 
-            this.tabPage11.Controls.Add(this.button9);
-            this.tabPage11.Controls.Add(this.button8);
-            this.tabPage11.Controls.Add(this.button7);
-            this.tabPage11.Controls.Add(this.label15);
-            this.tabPage11.Controls.Add(this.label14);
-            this.tabPage11.Location = new System.Drawing.Point(4, 25);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(774, 416);
-            this.tabPage11.TabIndex = 3;
-            this.tabPage11.Text = "Scan";
-            this.tabPage11.UseVisualStyleBackColor = true;
+            this.hostDetails_treeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hostDetails_treeView.Location = new System.Drawing.Point(3, 3);
+            this.hostDetails_treeView.Name = "hostDetails_treeView";
+            this.hostDetails_treeView.Size = new System.Drawing.Size(768, 408);
+            this.hostDetails_treeView.TabIndex = 0;
             // 
-            // button9
+            // scan_TabPage
             // 
-            this.button9.Location = new System.Drawing.Point(222, 377);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(102, 36);
-            this.button9.TabIndex = 8;
-            this.button9.Text = "Append Scan";
-            this.button9.UseVisualStyleBackColor = true;
+            this.scan_TabPage.Controls.Add(this.btnCancelScan);
+            this.scan_TabPage.Controls.Add(this.btnRemoveScan);
+            this.scan_TabPage.Controls.Add(this.btnAppendScan);
+            this.scan_TabPage.Controls.Add(this.scans_DataGridView);
+            this.scan_TabPage.Location = new System.Drawing.Point(4, 25);
+            this.scan_TabPage.Name = "scan_TabPage";
+            this.scan_TabPage.Size = new System.Drawing.Size(774, 414);
+            this.scan_TabPage.TabIndex = 3;
+            this.scan_TabPage.Text = "Scan";
+            this.scan_TabPage.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // btnCancelScan
             // 
-            this.button8.Location = new System.Drawing.Point(114, 377);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(102, 36);
-            this.button8.TabIndex = 7;
-            this.button8.Text = "Remove Scan";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnCancelScan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancelScan.Location = new System.Drawing.Point(219, 372);
+            this.btnCancelScan.Name = "btnCancelScan";
+            this.btnCancelScan.Size = new System.Drawing.Size(102, 36);
+            this.btnCancelScan.TabIndex = 11;
+            this.btnCancelScan.Text = "Cancel Scan";
+            this.btnCancelScan.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // btnRemoveScan
             // 
-            this.button7.Location = new System.Drawing.Point(6, 377);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(102, 36);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Append Scan";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnRemoveScan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRemoveScan.Location = new System.Drawing.Point(111, 372);
+            this.btnRemoveScan.Name = "btnRemoveScan";
+            this.btnRemoveScan.Size = new System.Drawing.Size(102, 36);
+            this.btnRemoveScan.TabIndex = 10;
+            this.btnRemoveScan.Text = "Remove Scan";
+            this.btnRemoveScan.UseVisualStyleBackColor = true;
             // 
-            // label15
+            // btnAppendScan
             // 
-            this.label15.Location = new System.Drawing.Point(58, 3);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(74, 26);
-            this.label15.TabIndex = 5;
-            this.label15.Text = "Command";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnAppendScan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAppendScan.Location = new System.Drawing.Point(3, 372);
+            this.btnAppendScan.Name = "btnAppendScan";
+            this.btnAppendScan.Size = new System.Drawing.Size(102, 36);
+            this.btnAppendScan.TabIndex = 6;
+            this.btnAppendScan.Text = "Append Scan";
+            this.btnAppendScan.UseVisualStyleBackColor = true;
             // 
-            // label14
+            // scans_DataGridView
             // 
-            this.label14.Location = new System.Drawing.Point(3, 3);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(58, 26);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "Status";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.scans_DataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.scans_DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.scans_DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scans_DataGridView.Location = new System.Drawing.Point(0, 0);
+            this.scans_DataGridView.Name = "scans_DataGridView";
+            this.scans_DataGridView.RowHeadersWidth = 51;
+            this.scans_DataGridView.RowTemplate.Height = 24;
+            this.scans_DataGridView.Size = new System.Drawing.Size(774, 414);
+            this.scans_DataGridView.TabIndex = 9;
             // 
             // tabControl2
             // 
@@ -503,7 +510,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(192, 416);
+            this.tabPage6.Size = new System.Drawing.Size(192, 414);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "Services";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -554,7 +561,8 @@
             "Quick scan plus",
             "Quick traceroute",
             "Reguler scan",
-            "Slow comprehensive scan"});
+            "Slow comprehensive scan",
+            "Manual scan"});
             this.profile_comboBox.Location = new System.Drawing.Point(468, 14);
             this.profile_comboBox.Name = "profile_comboBox";
             this.profile_comboBox.Size = new System.Drawing.Size(319, 24);
@@ -571,7 +579,7 @@
             // 
             // scan_button
             // 
-            this.scan_button.Location = new System.Drawing.Point(799, 12);
+            this.scan_button.Location = new System.Drawing.Point(796, 12);
             this.scan_button.Name = "scan_button";
             this.scan_button.Size = new System.Drawing.Size(55, 27);
             this.scan_button.TabIndex = 3;
@@ -590,7 +598,6 @@
             // 
             this.command_textBox.Location = new System.Drawing.Point(111, 43);
             this.command_textBox.Name = "command_textBox";
-            this.command_textBox.ReadOnly = true;
             this.command_textBox.Size = new System.Drawing.Size(811, 22);
             this.command_textBox.TabIndex = 6;
             // 
@@ -786,7 +793,9 @@
             this.portsHosts_tabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.portsDataGridView)).EndInit();
             this.tabPage9.ResumeLayout(false);
-            this.tabPage11.ResumeLayout(false);
+            this.hostDetails_tabPage.ResumeLayout(false);
+            this.scan_TabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.scans_DataGridView)).EndInit();
             this.tabControl2.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
@@ -814,8 +823,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.TabPage tabPage11;
+        private System.Windows.Forms.TabPage hostDetails_tabPage;
+        private System.Windows.Forms.TabPage scan_TabPage;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.Label label5;
@@ -857,11 +866,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnAppendScan;
         private System.Windows.Forms.FlowLayoutPanel os_host_flowLayoutPanel;
         private System.Windows.Forms.DataGridView portsDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -871,6 +876,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.TreeView hostDetails_treeView;
+        private System.Windows.Forms.Button btnCancelScan;
+        private System.Windows.Forms.Button btnRemoveScan;
+        private System.Windows.Forms.DataGridView scans_DataGridView;
     }
 }
 

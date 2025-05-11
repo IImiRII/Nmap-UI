@@ -18,6 +18,15 @@ namespace Nmap_UI
     {
         private Process currentProcess = null;
         // o anda calisan Nmap process
+
+        // Scans kismi icin veri yapisi
+        private BindingList<ScanEntry> scanList = new BindingList<ScanEntry>();
+        public class ScanEntry
+        {
+            public string Status { get; set; }
+            public string Command { get; set; }
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +42,38 @@ namespace Nmap_UI
             this.Text = "Nmap";
             target_textBox.Text = " "; // programı baslatinca nmap yazisini gormek icin.
             profile_comboBox.SelectedIndex = 0; // profilde ilk secenek secilmesi icin.
+
+            // scansDataGridView ayarları:
+            scans_DataGridView.AutoGenerateColumns = false;
+            scans_DataGridView.Columns.Clear();
+
+            // Status sütunu
+            var colStatus = new DataGridViewTextBoxColumn
+            {
+                Name = "Status",
+                DataPropertyName = "Status",
+                HeaderText = "Status",
+                ReadOnly = true
+            };
+            scans_DataGridView.Columns.Add(colStatus);
+
+            // Command sütunu
+            var colCommand = new DataGridViewTextBoxColumn
+            {
+                Name = "Command",
+                DataPropertyName = "Command",
+                HeaderText = "Command",
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            };
+            scans_DataGridView.Columns.Add(colCommand);
+
+            // Binding
+            scans_DataGridView.DataSource = scanList;
+
+            // Buton olaylarını da burada bağlayabilirsiniz:
+            btnRemoveScan.Click += btnRemoveScan_Click;
+            btnCancelScan.Click += btnCancelScan_Click;
 
         }
 
@@ -53,6 +94,35 @@ namespace Nmap_UI
             string profileCommand = GetProfileCommand(profile_comboBox.Text);
             string command = $"nmap {profileCommand} {target}";
             command_textBox.Text = command;
+
+        }
+
+
+        // 2) Seçileni kaldırmak
+        private void btnRemoveScan_Click(object sender, EventArgs e)
+        {
+            if (scans_DataGridView.CurrentRow == null) return;
+            var entry = (ScanEntry)scans_DataGridView.CurrentRow.DataBoundItem;
+            scanList.Remove(entry);
+        }
+
+        // 3) Cancel Scan: 
+        //    - Eğer o anda bir process çalışıyorsa durdursun.
+        //    - İstersen, seçili satırın Status’ünü "Canceled" yapsın.
+        private void btnCancelScan_Click(object sender, EventArgs e)
+        {
+            if (currentProcess != null && !currentProcess.HasExited)
+            {
+                currentProcess.Kill();
+                currentProcess = null;
+            }
+
+            if (scans_DataGridView.CurrentRow != null)
+            {
+                var entry = (ScanEntry)scans_DataGridView.CurrentRow.DataBoundItem;
+                entry.Status = "Canceled";
+                scans_DataGridView.Refresh();
+            }
         }
 
         private string GetProfileCommand(string profile)
@@ -80,6 +150,8 @@ namespace Nmap_UI
                     return " ";
                 case "Slow comprehensive scan":
                     return "nmap -sS -sU -T4 -A -v -PE -PP -PS80,443 -PA3389 -PU40125 -PY -g 53 --script \"default or (discovery and safe)\"";
+                case "Manual scan":
+                    return "";
                 default:
                     return "";
             }
@@ -106,7 +178,7 @@ namespace Nmap_UI
                 };
 
                 var process = new Process { StartInfo = startInfo };
-                currentProcess = process;  // Cancel butonu için saklıyoruz
+                currentProcess = process;  // Cancel butonu icin saklıyoruz
 
                 process.OutputDataReceived += (s, e) =>
                 {
@@ -143,6 +215,16 @@ namespace Nmap_UI
 
                 // 2) Ports/Hosts tablosunu doldur
                 PopulatePortsGrid(ip, collectedOutput);
+
+                // 3) Host Details tablosunu doldur
+                PopulateHostDetails(ip, collectedOutput);
+
+                var last = scanList.LastOrDefault(s => s.Command == command_textBox.Text.Trim());
+                if (last != null)
+                {
+                    last.Status = "Done";
+                    scans_DataGridView.Refresh();
+                }
 
                 // İşlem referansını temizleyelim
                 currentProcess = null;
@@ -222,6 +304,68 @@ namespace Nmap_UI
             }
         }
 
+        private void PopulateHostDetails(string ip, string output)
+        {
+            if (InvokeRequired)
+            {
+                this.Invoke(new Action<string, string>(PopulateHostDetails), ip, output);
+                return;
+            }
+
+            // Temizle
+            hostDetails_treeView.Nodes.Clear();
+
+            // Kök düğüm: IP
+            var root = new TreeNode(ip);
+
+            // 1) Host Status
+            var statusNode = new TreeNode("Host Status");
+
+            // State
+            string state = output.Contains("Host is up") ? "up" : "down";
+            statusNode.Nodes.Add($"State: {state}");
+
+            // Open, Filtered, Closed port sayıları
+            var openRegex = new Regex(@"(\d+)\/(?:tcp|udp)\s+open", RegexOptions.IgnoreCase);
+            var filteredRegex = new Regex(@"(\d+)\/(?:tcp|udp)\s+filtered", RegexOptions.IgnoreCase);
+            var closedRegex = new Regex(@"Not shown:\s*(\d+)\s*closed ports", RegexOptions.IgnoreCase);
+
+            int openCount = openRegex.Matches(output).Count;
+            int filteredCount = filteredRegex.Matches(output).Count;
+            int closedCount = 0;
+            var mClosed = closedRegex.Match(output);
+            if (mClosed.Success) closedCount = int.Parse(mClosed.Groups[1].Value);
+
+            statusNode.Nodes.Add($"Open ports: {openCount}");
+            statusNode.Nodes.Add($"Filtered ports: {filteredCount}");
+            statusNode.Nodes.Add($"Closed ports: {closedCount}");
+            statusNode.Nodes.Add($"Scanned ports: {openCount + filteredCount + closedCount}");
+
+            // Up time & Last boot (metin çıktıda yoksa “Not available”)
+            statusNode.Nodes.Add("Up time: Not available");
+            statusNode.Nodes.Add("Last boot: Not available");
+
+            root.Nodes.Add(statusNode);
+
+            // 2) Addresses
+            var addrNode = new TreeNode("Addresses");
+            addrNode.Nodes.Add($"IPv4: {ip}");
+            addrNode.Nodes.Add("IPv6: Not available");
+
+            // MAC Address
+            var macRegex = new Regex(@"MAC Address:\s*([0-9A-F:]+)", RegexOptions.IgnoreCase);
+            var mMac = macRegex.Match(output);
+            addrNode.Nodes.Add($"MAC: {(mMac.Success ? mMac.Groups[1].Value : "Not available")}");
+
+            root.Nodes.Add(addrNode);
+
+            // (İsteğe bağlı) Comments vb. ekleyebilirsiniz
+
+            // Ağaca ekle ve hepsini aç
+            hostDetails_treeView.Nodes.Add(root);
+            hostDetails_treeView.ExpandAll();
+        }
+
         private void UpdateOutput(string output)
         {
             if (InvokeRequired)
@@ -291,6 +435,18 @@ namespace Nmap_UI
 
         private void scan_button_Click(object sender, EventArgs e)
         {
+            // 1) Mevcut komutu scanList'e ekle (aynı Append Scan logic'i)
+            string cmd = command_textBox.Text.Trim();
+            if (!string.IsNullOrEmpty(cmd))
+            {
+                scanList.Add(new ScanEntry
+                {
+                    Status = "Unsaved",
+                    Command = cmd
+                });
+            }
+
+            // taramayi baslat
             RunNmapScan();
         }
     }
