@@ -85,11 +85,25 @@ namespace Nmap_UI
         // Nmap komutunu yeniler
         private void profile_comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            bool manual = profile_comboBox.Text == "Manual scan";
+
+            // Manual moddaysa kullanıcı müdahalesine izin verelim,
+            // aksi halde otomatik doldursun ve salt-okunur yapsın:
+            command_textBox.ReadOnly = !manual;
+
+            // Seçim değişince komutu güncelle
             UpdateCommandDisplay();
         }
 
         private void UpdateCommandDisplay()
         {
+            if (profile_comboBox.Text == "Manual scan")
+            {
+                // 'nmap ' önekiyle target'ı command'a yansıt
+                command_textBox.Text = $"nmap {target_textBox.Text}";
+                return;
+            }
+
             string target = target_textBox.Text;
             string profileCommand = GetProfileCommand(profile_comboBox.Text);
             string command = $"nmap {profileCommand} {target}";
@@ -161,7 +175,9 @@ namespace Nmap_UI
         // async cunku anlik olarak ciktinin degismesini istiyoruz.
         private async void RunNmapScan()
         {
-            UpdateCommandDisplay();
+            if (profile_comboBox.Text != "Manual scan")
+                UpdateCommandDisplay();
+
             string command = command_textBox.Text;
             string collectedOutput = "";  // tüm output burada toplanacak
 
@@ -255,6 +271,7 @@ namespace Nmap_UI
                 output_richbox.Clear();
                 profile_comboBox.SelectedIndex = 0;
             }
+            output_richbox.Clear();
         }
 
         private void PopulatePortsGrid(string ip, string collectedOutput)
