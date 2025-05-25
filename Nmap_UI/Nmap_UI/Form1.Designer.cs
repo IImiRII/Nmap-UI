@@ -93,8 +93,8 @@
             this.searchScanResultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterHostsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newProfileOrCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editSelectedProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -182,7 +182,7 @@
             this.portsHosts_tabPage.Controls.Add(this.label7);
             this.portsHosts_tabPage.Location = new System.Drawing.Point(4, 25);
             this.portsHosts_tabPage.Name = "portsHosts_tabPage";
-            this.portsHosts_tabPage.Size = new System.Drawing.Size(774, 414);
+            this.portsHosts_tabPage.Size = new System.Drawing.Size(774, 416);
             this.portsHosts_tabPage.TabIndex = 0;
             this.portsHosts_tabPage.Text = "Ports/Hosts";
             this.portsHosts_tabPage.UseVisualStyleBackColor = true;
@@ -204,7 +204,7 @@
             this.portsDataGridView.Name = "portsDataGridView";
             this.portsDataGridView.RowHeadersWidth = 51;
             this.portsDataGridView.RowTemplate.Height = 24;
-            this.portsDataGridView.Size = new System.Drawing.Size(774, 414);
+            this.portsDataGridView.Size = new System.Drawing.Size(774, 416);
             this.portsDataGridView.TabIndex = 11;
             // 
             // dataGridViewTextBoxColumn1
@@ -329,7 +329,7 @@
             this.tabPage9.Location = new System.Drawing.Point(4, 25);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(774, 414);
+            this.tabPage9.Size = new System.Drawing.Size(774, 416);
             this.tabPage9.TabIndex = 1;
             this.tabPage9.Text = "Topology";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -385,7 +385,7 @@
             this.hostDetails_tabPage.Location = new System.Drawing.Point(4, 25);
             this.hostDetails_tabPage.Name = "hostDetails_tabPage";
             this.hostDetails_tabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.hostDetails_tabPage.Size = new System.Drawing.Size(774, 414);
+            this.hostDetails_tabPage.Size = new System.Drawing.Size(774, 416);
             this.hostDetails_tabPage.TabIndex = 2;
             this.hostDetails_tabPage.Text = "Host Details";
             this.hostDetails_tabPage.UseVisualStyleBackColor = true;
@@ -395,7 +395,7 @@
             this.hostDetails_treeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hostDetails_treeView.Location = new System.Drawing.Point(3, 3);
             this.hostDetails_treeView.Name = "hostDetails_treeView";
-            this.hostDetails_treeView.Size = new System.Drawing.Size(768, 408);
+            this.hostDetails_treeView.Size = new System.Drawing.Size(768, 410);
             this.hostDetails_treeView.TabIndex = 0;
             // 
             // scan_TabPage
@@ -406,7 +406,7 @@
             this.scan_TabPage.Controls.Add(this.scans_DataGridView);
             this.scan_TabPage.Location = new System.Drawing.Point(4, 25);
             this.scan_TabPage.Name = "scan_TabPage";
-            this.scan_TabPage.Size = new System.Drawing.Size(774, 414);
+            this.scan_TabPage.Size = new System.Drawing.Size(774, 416);
             this.scan_TabPage.TabIndex = 3;
             this.scan_TabPage.Text = "Scan";
             this.scan_TabPage.UseVisualStyleBackColor = true;
@@ -450,7 +450,7 @@
             this.scans_DataGridView.Name = "scans_DataGridView";
             this.scans_DataGridView.RowHeadersWidth = 51;
             this.scans_DataGridView.RowTemplate.Height = 24;
-            this.scans_DataGridView.Size = new System.Drawing.Size(774, 414);
+            this.scans_DataGridView.Size = new System.Drawing.Size(774, 416);
             this.scans_DataGridView.TabIndex = 9;
             // 
             // tabControl2
@@ -510,7 +510,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(192, 414);
+            this.tabPage6.Size = new System.Drawing.Size(192, 416);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "Services";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -729,23 +729,23 @@
             // profileToolStripMenuItem
             // 
             this.profileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newProfileOrCommandToolStripMenuItem,
-            this.editSelectedProfileToolStripMenuItem});
+            this.newProfileToolStripMenuItem,
+            this.editProfileToolStripMenuItem});
             this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
             this.profileToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
             this.profileToolStripMenuItem.Text = "Profile";
             // 
-            // newProfileOrCommandToolStripMenuItem
+            // newProfileToolStripMenuItem
             // 
-            this.newProfileOrCommandToolStripMenuItem.Name = "newProfileOrCommandToolStripMenuItem";
-            this.newProfileOrCommandToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
-            this.newProfileOrCommandToolStripMenuItem.Text = "New Profile or Command";
+            this.newProfileToolStripMenuItem.Name = "newProfileToolStripMenuItem";
+            this.newProfileToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
+            this.newProfileToolStripMenuItem.Text = "New Profile or Command";
             // 
-            // editSelectedProfileToolStripMenuItem
+            // editProfileToolStripMenuItem
             // 
-            this.editSelectedProfileToolStripMenuItem.Name = "editSelectedProfileToolStripMenuItem";
-            this.editSelectedProfileToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
-            this.editSelectedProfileToolStripMenuItem.Text = "Edit Selected Profile";
+            this.editProfileToolStripMenuItem.Name = "editProfileToolStripMenuItem";
+            this.editProfileToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
+            this.editProfileToolStripMenuItem.Text = "Edit Selected Profile";
             // 
             // helpToolStripMenuItem
             // 
@@ -784,7 +784,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Eyemap";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.main_panel.ResumeLayout(false);
             this.output_TabControl.ResumeLayout(false);
@@ -856,8 +856,8 @@
         private System.Windows.Forms.ToolStripMenuItem filterHostsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem profileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newProfileOrCommandToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editSelectedProfileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newProfileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editProfileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem reportABugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;

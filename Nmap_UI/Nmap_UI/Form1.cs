@@ -27,6 +27,10 @@ namespace Nmap_UI
             public string Command { get; set; }
         }
 
+        // kullanici kendi profilini eklemek icin yapilan veri yapiları
+        private Dictionary<string, string> customProfiles = new Dictionary<string, string>();
+        private Dictionary<string, string> customDescriptions = new Dictionary<string, string>();
+
         public Form1()
         {
             InitializeComponent();
@@ -35,7 +39,12 @@ namespace Nmap_UI
             profile_comboBox.SelectedIndexChanged += profile_comboBox_SelectedIndexChanged;
             scan_button.Click += scan_button_Click;
             cancel_button.Click += cancel_button_Click;
+
+            // Profile sekmesindeki butonlar
+            newProfileToolStripMenuItem.Click += NewProfileToolStripMenuItem_Click;
+            editProfileToolStripMenuItem.Click += EditProfileToolStripMenuItem_Click;
         }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -77,6 +86,79 @@ namespace Nmap_UI
 
         }
 
+        // Alttaki iki metot Profile sekmesi icin
+        private void NewProfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var editor = new ProfileEditorForm())
+            {
+                // Show modal: arkada Form1 görünür kalır
+                if (editor.ShowDialog(this) == DialogResult.OK)
+                {
+                    string name = editor.ProfileNameValue;
+                    string cmd = editor.ProfileCommandValue;
+
+                    // 1) Combobox'a ekle
+                    profile_comboBox.Items.Add(name);
+
+                    // 2) Dictionary'e de sakla
+                    customProfiles[name] = cmd;
+                    customDescriptions[name] = editor.ProfileDescriptionValue;
+
+                    // 3) Otomatik seç
+                    profile_comboBox.SelectedItem = name;
+                }
+            }
+        }
+
+        private void EditProfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Seçili profilin adı
+            if (!(profile_comboBox.SelectedItem is string oldName)) return;
+
+            // Sözlükte kayıtlı cmd ve desc alalım
+            string oldDesc = "";
+            if (!customDescriptions.TryGetValue(oldName, out oldDesc))
+                oldDesc = GetProfileDescription(oldName);
+
+            customProfiles.TryGetValue(oldName, out var oldCmd);
+
+            // Düzenleme formunu aç
+            using (var editor = new ProfileEditorFormDelete(oldName, oldDesc, oldCmd))
+            {
+                if (editor.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                if (editor.IsDeleted)
+                {
+                    // Silme
+                    customProfiles.Remove(oldName);
+                    customDescriptions.Remove(oldName);
+                    profile_comboBox.Items.Remove(oldName);
+                }
+                else
+                {
+                    // Güncelleme
+                    string newName = editor.ProfileNameValue;
+                    string newCmd = editor.ProfileCommandValue;
+                    string newDesc = editor.ProfileDescriptionValue;
+
+                    // Eğer isim değiştiyse ComboBox’ta da güncelle
+                    if (newName != oldName)
+                    {
+                        int idx = profile_comboBox.Items.IndexOf(oldName);
+                        profile_comboBox.Items[idx] = newName;
+                        customProfiles.Remove(oldName);
+                        customDescriptions.Remove(oldName);
+                    }
+
+                    // Yeni değerleri sözlüğe kaydet
+                    customProfiles[newName] = newCmd;
+                    customDescriptions[newName] = newDesc;
+                    profile_comboBox.SelectedItem = newName;
+                }
+            }
+        }
+
         // Nmap komutunu yeniler
         private void target_textBox_TextChanged(object sender, EventArgs e)
         {
@@ -104,10 +186,14 @@ namespace Nmap_UI
                 return;
             }
 
-            string target = target_textBox.Text;
-            string profileCommand = GetProfileCommand(profile_comboBox.Text);
-            string command = $"nmap {profileCommand} {target}";
-            command_textBox.Text = command;
+            // Önce custom Profiles sözlüğünde arayalım
+            string profile = profile_comboBox.Text;
+            string cmd = customProfiles.TryGetValue(profile, out var custom)
+                           ? custom
+                           : GetProfileCommand(profile);
+
+            // Ardından target ekle
+            command_textBox.Text = $"nmap {cmd} {target_textBox.Text}";
 
         }
 
@@ -141,6 +227,10 @@ namespace Nmap_UI
 
         private string GetProfileCommand(string profile)
         {
+            // Önce custom profil var mı bak
+            if (customProfiles.TryGetValue(profile, out var customCmd))
+                return customCmd;
+
             // Profil secimine gore nmap komutu.
             switch (profile)
             {
@@ -166,6 +256,37 @@ namespace Nmap_UI
                     return "nmap -sS -sU -T4 -A -v -PE -PP -PS80,443 -PA3389 -PU40125 -PY -g 53 --script \"default or (discovery and safe)\"";
                 case "Manual scan":
                     return "";
+                default:
+                    return "";
+            }
+        }
+
+        private string GetProfileDescription(string profile)
+        {
+            switch (profile)
+            {
+                case "Intense scan":
+                    return "Versiyon tespiti, OS tespiti, script taraması ve traceroute içeren yoğun tarama.";
+                case "Intense scan plus UDP":
+                    return "TCP yoğun taramaya UDP portlarını da ekler.";
+                case "Intense scan, all TCP ports":
+                    return "Tüm 1-65535 TCP portlarını versiyon bilgisiyle birlikte tarar.";
+                case "Intense scan, no ping":
+                    return "Yoğun tarama fakat host keşfi için ping atmaz (-Pn).";
+                case "Ping scan":
+                    return "Sadece host up/down bilgisini alır, port taramaz.";
+                case "Quick scan":
+                    return "İlk 100 porta hızlı tarama yapar (-F).";
+                case "Quick scan plus":
+                    return "Hızlı tarama + servis versiyonu ve OS tespiti.";
+                case "Quick traceroute":
+                    return "Ping scan + traceroute işlemi.";
+                case "Regular scan":
+                    return "Varsayılan 1000 porta tarama.";
+                case "Slow comprehensive scan":
+                    return "Uzun süreli, geniş kapsamlı script ve ping içeren tarama.";
+                case "Manual scan":
+                    return "Komut satırına tamamen kendi argümanlarınızı girin.";
                 default:
                     return "";
             }
