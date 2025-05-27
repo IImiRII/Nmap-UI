@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Drawing.Printing;  // print islemi icin
 using System.Linq; // .Any() için ekleyin
 using System.Text.RegularExpressions;
 
@@ -16,8 +16,11 @@ namespace Nmap_UI
 {
     public partial class Form1 : Form
     {
-        private Process currentProcess = null;
         // o anda calisan Nmap process
+        private Process currentProcess = null;
+
+        // print islemi icin
+        private PrintDocument printDocument = new PrintDocument();
 
         // Scans kismi icin veri yapisi
         private BindingList<ScanEntry> scanList = new BindingList<ScanEntry>();
@@ -43,8 +46,26 @@ namespace Nmap_UI
             // Profile sekmesindeki butonlar
             newProfileToolStripMenuItem.Click += NewProfileToolStripMenuItem_Click;
             editProfileToolStripMenuItem.Click += EditProfileToolStripMenuItem_Click;
+
+            // About
+            aboutToolStripMenuItem.Click += AboutToolStripMenuItem_Click;
+
+            newWindowToolStripMenuItem.Click += NewWindowToolStripMenuItem_Click;
+            printToolStripMenuItem.Click += PrintToolStripMenuItem_Click;
+            quitToolStripMenuItem.Click += QuitToolStripMenuItem_Click;
+
+
+            // PrintDocument sayfa basmayı dinlesin
+            printDocument.PrintPage += PrintDocument_PrintPage;
+
+            // Help
+            helpToolStripMenuItem1.Click += HelpToolStripMenuItem1_Click;
+
+            // Report a Bug
+            reportABugToolStripMenuItem.Click += ReportABugToolStripMenuItem_Click;
         }
 
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -84,6 +105,75 @@ namespace Nmap_UI
             btnRemoveScan.Click += btnRemoveScan_Click;
             btnCancelScan.Click += btnCancelScan_Click;
 
+        }
+
+        // Alttaki 3 metot print metodu icin
+        private void NewWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Aynı formun yeni bir örneğini aç
+            var win = new Form1();
+            win.Show();
+        }
+
+        private void PrintToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new PrintDialog())
+            {
+                dlg.Document = printDocument;
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    printDocument.Print();
+                }
+            }
+        }
+
+        // Quit
+        private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        // Report a Bug
+        private void ReportABugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var win = new ReportBug();
+            win.Show();
+        }
+
+        // Help
+        private void HelpToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var win = new HelpForm();
+            win.Show();
+        }
+
+        // Burada sayfa başına metni basıyoruz.
+        private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            // Yazdırılacak metin (richTextBox'taki tüm çıktı)
+            string text = output_richbox.Text;
+            // Basit bir mono-space font seçelim
+            using (Font f = new Font("Consolas", 10))
+            {
+                // Metni margin alanına yazdır
+                e.Graphics.DrawString(
+                    text,
+                    f,
+                    Brushes.Black,
+                    e.MarginBounds.Left,
+                    e.MarginBounds.Top
+                );
+            }
+            // Tek sayfada sığmayacaksa e.HasMorePages = true; ekleyebilirsiniz.
+        }
+
+        // Alttaki bir metot About kismi icin
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var about = new AboutForm())
+            {
+                about.ShowDialog(this);
+            }
         }
 
         // Alttaki iki metot Profile sekmesi icin
@@ -587,5 +677,7 @@ namespace Nmap_UI
             // taramayi baslat
             RunNmapScan();
         }
+
+       
     }
 }

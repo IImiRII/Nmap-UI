@@ -10,3 +10,6 @@ C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.exe
 C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.pdb
 C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.ProfileEditorForm.resources
 C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.ProfileEditorFormDelete.resources
+C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.AboutForm.resources
+C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.HelpForm.resources
+C:\Users\emirs\Documents\Projects\Nmap_UI\Nmap_UI\obj\Debug\Nmap_UI.ReportBug.resources
