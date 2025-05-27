@@ -31,7 +31,6 @@
             this.main_panel = new System.Windows.Forms.Panel();
             this.output_TabControl = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.output_richbox = new System.Windows.Forms.RichTextBox();
             this.portsHosts_tabPage = new System.Windows.Forms.TabPage();
             this.portsDataGridView = new System.Windows.Forms.DataGridView();
@@ -99,6 +98,7 @@
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.reportABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.historyComboBox = new System.Windows.Forms.ComboBox();
             this.main_panel.SuspendLayout();
             this.output_TabControl.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -121,9 +121,9 @@
             this.main_panel.Controls.Add(this.tabControl2);
             this.main_panel.Controls.Add(this.target_panel);
             this.main_panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.main_panel.Location = new System.Drawing.Point(0, 28);
+            this.main_panel.Location = new System.Drawing.Point(0, 30);
             this.main_panel.Name = "main_panel";
-            this.main_panel.Size = new System.Drawing.Size(982, 525);
+            this.main_panel.Size = new System.Drawing.Size(982, 523);
             this.main_panel.TabIndex = 6;
             // 
             // output_TabControl
@@ -137,28 +137,19 @@
             this.output_TabControl.Location = new System.Drawing.Point(200, 80);
             this.output_TabControl.Name = "output_TabControl";
             this.output_TabControl.SelectedIndex = 0;
-            this.output_TabControl.Size = new System.Drawing.Size(782, 445);
+            this.output_TabControl.Size = new System.Drawing.Size(782, 443);
             this.output_TabControl.TabIndex = 6;
             // 
             // tabPage7
             // 
-            this.tabPage7.Controls.Add(this.textBox3);
+            this.tabPage7.Controls.Add(this.historyComboBox);
             this.tabPage7.Controls.Add(this.output_richbox);
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(774, 416);
+            this.tabPage7.Size = new System.Drawing.Size(774, 414);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "Nmap Output";
             this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(0, 0);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(774, 22);
-            this.textBox3.TabIndex = 7;
             // 
             // output_richbox
             // 
@@ -166,7 +157,7 @@
             this.output_richbox.Location = new System.Drawing.Point(0, 0);
             this.output_richbox.Name = "output_richbox";
             this.output_richbox.ReadOnly = true;
-            this.output_richbox.Size = new System.Drawing.Size(774, 416);
+            this.output_richbox.Size = new System.Drawing.Size(774, 414);
             this.output_richbox.TabIndex = 0;
             this.output_richbox.Text = "";
             // 
@@ -461,7 +452,7 @@
             this.tabControl2.Location = new System.Drawing.Point(0, 80);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(200, 445);
+            this.tabControl2.Size = new System.Drawing.Size(200, 443);
             this.tabControl2.TabIndex = 8;
             // 
             // tabPage5
@@ -472,7 +463,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(192, 416);
+            this.tabPage5.Size = new System.Drawing.Size(192, 414);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "Hosts";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -480,7 +471,7 @@
             // os_host_flowLayoutPanel
             // 
             this.os_host_flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.os_host_flowLayoutPanel.Location = new System.Drawing.Point(3, 38);
+            this.os_host_flowLayoutPanel.Location = new System.Drawing.Point(3, 36);
             this.os_host_flowLayoutPanel.Name = "os_host_flowLayoutPanel";
             this.os_host_flowLayoutPanel.Size = new System.Drawing.Size(186, 375);
             this.os_host_flowLayoutPanel.TabIndex = 4;
@@ -638,7 +629,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(982, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(982, 30);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -653,7 +644,7 @@
             this.printToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.scanToolStripMenuItem.Name = "scanToolStripMenuItem";
-            this.scanToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
+            this.scanToolStripMenuItem.Size = new System.Drawing.Size(54, 26);
             this.scanToolStripMenuItem.Text = "Scan";
             // 
             // newWindowToolStripMenuItem
@@ -705,7 +696,7 @@
             this.searchScanResultsToolStripMenuItem,
             this.filterHostsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 26);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // compareResultsToolStripMenuItem
@@ -732,7 +723,7 @@
             this.newProfileToolStripMenuItem,
             this.editProfileToolStripMenuItem});
             this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            this.profileToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
+            this.profileToolStripMenuItem.Size = new System.Drawing.Size(66, 26);
             this.profileToolStripMenuItem.Text = "Profile";
             // 
             // newProfileToolStripMenuItem
@@ -754,26 +745,35 @@
             this.reportABugToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 26);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // helpToolStripMenuItem1
             // 
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(179, 26);
             this.helpToolStripMenuItem1.Text = "Help";
             // 
             // reportABugToolStripMenuItem
             // 
             this.reportABugToolStripMenuItem.Name = "reportABugToolStripMenuItem";
-            this.reportABugToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.reportABugToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.reportABugToolStripMenuItem.Text = "Report a Bug";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // historyComboBox
+            // 
+            this.historyComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.historyComboBox.FormattingEnabled = true;
+            this.historyComboBox.Location = new System.Drawing.Point(0, 0);
+            this.historyComboBox.Name = "historyComboBox";
+            this.historyComboBox.Size = new System.Drawing.Size(774, 24);
+            this.historyComboBox.TabIndex = 8;
             // 
             // Form1
             // 
@@ -789,7 +789,6 @@
             this.main_panel.ResumeLayout(false);
             this.output_TabControl.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
-            this.tabPage7.PerformLayout();
             this.portsHosts_tabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.portsDataGridView)).EndInit();
             this.tabPage9.ResumeLayout(false);
@@ -812,7 +811,6 @@
         private System.Windows.Forms.Panel main_panel;
         private System.Windows.Forms.TabControl output_TabControl;
         private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.RichTextBox output_richbox;
         private System.Windows.Forms.TabPage portsHosts_tabPage;
         private System.Windows.Forms.Label label13;
@@ -880,6 +878,7 @@
         private System.Windows.Forms.Button btnCancelScan;
         private System.Windows.Forms.Button btnRemoveScan;
         private System.Windows.Forms.DataGridView scans_DataGridView;
+        private System.Windows.Forms.ComboBox historyComboBox;
     }
 }
 

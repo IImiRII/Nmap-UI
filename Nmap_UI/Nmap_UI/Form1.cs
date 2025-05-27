@@ -63,12 +63,19 @@ namespace Nmap_UI
 
             // Report a Bug
             reportABugToolStripMenuItem.Click += ReportABugToolStripMenuItem_Click;
+
+            // Gecmis taramalari gormek icin
+            historyComboBox.SelectedIndexChanged += HistoryComboBox_SelectedIndexChanged;
         }
 
         
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // History combobox readonly
+            historyComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+
             this.Text = "Nmap";
             target_textBox.Text = " "; // programı baslatinca nmap yazisini gormek icin.
             profile_comboBox.SelectedIndex = 0; // profilde ilk secenek secilmesi icin.
@@ -131,6 +138,15 @@ namespace Nmap_UI
         private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        // History
+        private void HistoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (historyComboBox.SelectedItem is string prevCmd)
+            {
+                command_textBox.Text = prevCmd;
+            }
         }
 
         // Report a Bug
@@ -663,18 +679,21 @@ namespace Nmap_UI
 
         private void scan_button_Click(object sender, EventArgs e)
         {
-            // 1) Mevcut komutu scanList'e ekle (aynı Append Scan logic'i)
             string cmd = command_textBox.Text.Trim();
             if (!string.IsNullOrEmpty(cmd))
             {
-                scanList.Add(new ScanEntry
+                // Scan tablosuna ekleme
+                scanList.Add(new ScanEntry { Status = "Unsaved", Command = cmd });
+
+                // History ComboBox'a ekle (aynı komutu iki kere eklememek için kontrol edebilirsiniz)
+                if (!historyComboBox.Items.Contains(cmd))
                 {
-                    Status = "Unsaved",
-                    Command = cmd
-                });
+                    historyComboBox.Items.Add(cmd);
+                }
+                // En alta inelim
+                historyComboBox.SelectedIndex = historyComboBox.Items.Count - 1;
             }
 
-            // taramayi baslat
             RunNmapScan();
         }
 
